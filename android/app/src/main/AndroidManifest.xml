@@ -1,23 +1,46 @@
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.from.hurghada">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- صلاحيات الانترنت -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- صلاحيات الموقع -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- صلاحيات استقبال الإشعارات في الخلفية -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- صلاحية تشغيل خدمات في الخلفية -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:label="From Hurghada"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"> <!-- لو موقعك مش HTTPS -->
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- خدمات OneSignal المطلوبة -->
+        <service android:name="com.onesignal.GcmIntentService" android:exported="false" />
+        <service android:name="com.onesignal.NotificationExtenderService" android:exported="false" />
+        
+        <receiver android:name="com.onesignal.BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
