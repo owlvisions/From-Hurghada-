@@ -15,7 +15,6 @@ workflows:
     environment:
       flutter: stable
       xcode: latest
-      cocoapods: true
     publishing:
       email:
         recipients:
