@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static const String oneSignalAppId = 'YOUR_ONESIGNAL_APP_ID'; // Change this
+  static const String oneSignalAppId = 'b188bee9-c63f-40fa-91b1-ebbe5b5ed43c'; // Change this
 
   @override
   Widget build(BuildContext context) {
